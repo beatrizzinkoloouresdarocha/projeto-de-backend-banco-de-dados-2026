@@ -1,5 +1,7 @@
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
 from banco import conectar
-from datetime import date
 
 
 def atualizar_pagamentos():
@@ -8,7 +10,9 @@ def atualizar_pagamentos():
 
     cursor = conexao.cursor()
 
-    hoje = date.today().isoformat()
+    hoje = datetime.now(
+        ZoneInfo("America/Sao_Paulo")
+    ).date().isoformat()
 
     print("=" * 50)
     print("ATUALIZAÇÃO AUTOMÁTICA")
@@ -16,7 +20,6 @@ def atualizar_pagamentos():
 
     print(f"Data atual: {hoje}")
     print()
-
 
     comando = """
     UPDATE pagamentos
@@ -34,19 +37,15 @@ def atualizar_pagamentos():
 
     quantidade_atrasados = cursor.rowcount
 
-
     conexao.commit()
-
 
     print(
         f"Pagamentos marcados como atrasados: "
         f"{quantidade_atrasados}"
     )
 
-
     conexao.close()
 
 
 if __name__ == "__main__":
-
     atualizar_pagamentos()
