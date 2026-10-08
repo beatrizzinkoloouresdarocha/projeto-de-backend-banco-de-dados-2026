@@ -1,0 +1,23 @@
+
+# Segredos e variáveis de ambiente
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# Node.js
+node_modules/
+
+# Editores e sistema
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Logs e arquivos locais
+*.log
